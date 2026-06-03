@@ -1,0 +1,8 @@
+docker network create bankapp
+docker volume create mysql-data
+
+mysql container command
+docker run -d -p 3306:3306 -v mysql-data:/var/lib/mysql --network=bankapp -e MYSQL_ROOT_PASSWORD=Test@123 -e MYSQL_DATABASE=bankappdb mysql
+
+backend container command
+docker run -d --network=bankapp -p 8080:8080 bankapp:latest
